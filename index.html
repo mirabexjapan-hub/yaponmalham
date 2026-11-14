@@ -606,12 +606,22 @@ function renderMenu() {
   $('#menuPanel').innerHTML = items.map((it, i) =>
     '<button type="button" class="menu-item" data-mg="' + it.id + '" style="animation-delay:' + (i * 60) + 'ms"><i>' + it.icon + '</i><span>' + esc(it.name) + '</span><em>' + it.n + '</em></button>').join('');
 }
+let menuTimer = null;
 function setMenu(open) {
   const p = $('#menuPanel');
   p.hidden = !open;
   $('#menuBtn').setAttribute('aria-expanded', String(open));
+  clearTimeout(menuTimer);
   if (open) { p.scrollTop = 0; }
 }
+/* Сичқонча менюдан чиққач, 2.5 секунддан кейин меню ўзи ёпилади */
+function menuLeave() { if (!$('#menuPanel').hidden) { clearTimeout(menuTimer); menuTimer = setTimeout(() => setMenu(false), 2500); } }
+function menuEnter() { clearTimeout(menuTimer); }
+['#menuPanel', '#menuBtn'].forEach(sel => {
+  const el = $(sel);
+  el.addEventListener('mouseenter', menuEnter);
+  el.addEventListener('mouseleave', menuLeave);
+});
 $('#menuBtn').addEventListener('click', () => setMenu($('#menuPanel').hidden));
 $('#menuPanel').addEventListener('click', e => {
   const b = e.target.closest('[data-mg]');
