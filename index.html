@@ -98,7 +98,10 @@ h2{font-family:var(--serif);font-weight:700;font-size:clamp(24px,3vw,32px);color
 .prod-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .badge{z-index:1;position:absolute;left:8px;top:8px;background:rgba(255,255,255,.94);color:var(--leaf);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:3px 9px;max-width:calc(100% - 16px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .prod-body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
-.prod-name{font-family:var(--serif);font-weight:700;font-size:16px;line-height:1.25;color:var(--indigo);margin:0}
+.prod-name{font-family:var(--serif);font-weight:700;font-size:16px;line-height:1.25;color:var(--indigo);margin:0;min-width:0}
+.prod-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.prod-info{flex:none;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--indigo);background:var(--card);color:var(--indigo);font-family:Georgia,serif;font-style:italic;font-weight:700;font-size:14px;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0}
+.prod-info:hover{background:var(--indigo);color:#fff}
 .prod-jp{font-size:12px;color:var(--slate)}
 .prod-desc{font-size:13px;color:var(--ink-soft);margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .prod-foot{margin-top:auto;padding-top:8px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
@@ -435,7 +438,7 @@ function cardHtml(p) {
   return '<article class="prod">' +
     '<button type="button" class="prod-img" data-open="' + p.id + '" aria-label="' + esc(pname(p)) + '"><span class="badge">' + esc(CATS[p.cat][lang]) + '</span>' +
     '<img src="images/thumb/' + p.img + '" alt="' + esc(pname(p)) + '" loading="lazy" decoding="async"></button>' +
-    '<div class="prod-body"><h3 class="prod-name">' + esc(pname(p)) + '</h3><div class="prod-jp">' + esc(p.jp) + '</div>' +
+    '<div class="prod-body"><div class="prod-head"><h3 class="prod-name">' + esc(pname(p)) + '</h3><button type="button" class="prod-info" data-open="' + p.id + '" aria-label="' + (lang === 'uz' ? 'Маълумот' : 'Информация') + '" title="' + (lang === 'uz' ? 'Маълумот' : 'Информация') + '">i</button></div><div class="prod-jp">' + esc(p.jp) + '</div>' +
     '<p class="prod-desc">' + esc(p[lang]) + '</p>' +
     '<div class="prod-foot">' + price +
     (p.v.length === 1 ? '<button type="button" class="add" data-add="' + p.id + '|0">' + t('add') + '</button>' : '<button type="button" class="add" data-open="' + p.id + '">' + t('choose') + '</button>') +
