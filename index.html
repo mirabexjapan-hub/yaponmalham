@@ -75,8 +75,9 @@ h2{font-family:var(--serif);font-weight:700;font-size:clamp(24px,3vw,32px);color
 .groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-bottom:16px}
 .group{display:flex;align-items:center;gap:10px;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:var(--radius);padding:10px 12px;font-size:14px;font-weight:600;color:var(--ink-soft);line-height:1.25;transition:border-color .15s,box-shadow .15s}
 @media(min-width:821px){
-  .groups{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin-bottom:12px}
-  .group{padding:5px 8px;font-size:12px;gap:6px;border-radius:8px}
+  .groups{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:6px;margin-bottom:12px;scrollbar-width:thin}
+  .group{flex:none;white-space:nowrap;padding:5px 10px;font-size:12px;gap:6px;border-radius:8px}
+  .group span{flex:none}
   .group i{font-size:15px}
   .group em{font-size:11px;padding:0 6px}
   #catalog .groups{position:sticky;top:72px;z-index:30;background:var(--paper);padding:8px 0;box-shadow:0 8px 14px -12px rgba(19,39,52,.35)}
