@@ -202,11 +202,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 .menu-panel:not([hidden]) .menu-item{animation:groupIn .4s cubic-bezier(.2,.8,.2,1) both}
 @media(prefers-reduced-motion:reduce){.menu-item{opacity:1;animation:none!important}}
 #groups{display:none!important}
-.search-top{width:230px;height:38px;border:1px solid var(--line);border-radius:999px;padding:0 14px;font:inherit;font-size:14px;background:var(--card);color:var(--ink);flex:none;min-width:0}
-.search-top:focus{outline:2px solid var(--leaf);outline-offset:1px}
-@media(max-width:1100px){.search-top{width:170px}}
-@media(max-width:820px){.search-top{width:120px;font-size:13px;padding:0 10px}.head{gap:8px}.info-btn,.cart-btn{padding:8px 10px;font-size:13px}}
-@media(max-width:700px){#brand{display:none}.search-top{width:110px}}
+.search-top{width:260px;height:38px;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:0 16px;font:inherit;font-size:14px;background:rgba(255,255,255,.1);color:#fff;flex:none;min-width:0;margin-left:auto}
+.search-top::placeholder{color:rgba(255,255,255,.75)}
+.search-top:focus{outline:2px solid #fff;outline-offset:2px}
+@media(max-width:820px){.search-top{width:100%;margin-left:0}}
 #about{display:none!important}
 .info-btn{border:1px solid var(--line);background:var(--card);color:var(--indigo);border-radius:999px;padding:8px 14px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;flex:none;white-space:nowrap}
 .info-btn:hover{border-color:var(--leaf)}
@@ -230,7 +229,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
       <a href="#howto" data-t="navHow"></a>
       <a href="#contact" data-t="navContact"></a>
     </nav>
-    <input class="search-top" id="search" type="search" autocomplete="off" aria-label="Search">
     <div class="lang" role="group" aria-label="Language">
       <button type="button" data-lang="uz">ЎЗ</button>
       <button type="button" data-lang="ru">РУ</button>
@@ -250,6 +248,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
         <div class="hero-btns">
           <a class="btn" href="#catalog" data-t="heroBtn1"></a>
           <a class="btn ghost" href="#howto" data-t="heroBtn2"></a>
+          <input class="search-top" id="search" type="search" autocomplete="off" aria-label="Search">
         </div>
         <div class="hero-facts">
           <span><b id="factProducts"></b><span data-t="factProducts"></span></span>
