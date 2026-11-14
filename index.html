@@ -186,6 +186,19 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 #groups.cascade>*:nth-child(11){animation-delay:700ms}
 #groups.cascade>*:nth-child(12){animation-delay:770ms}
 @media(prefers-reduced-motion:reduce){#groups.cascade>*{animation:none}}
+.menu-btn{flex:none;width:42px;height:42px;border:1px solid var(--line);background:var(--card);border-radius:999px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;padding:0}
+.menu-btn span{display:block;width:18px;height:2px;background:var(--indigo);border-radius:2px;transition:transform .2s,opacity .2s}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.menu-panel{position:fixed;top:72px;right:max(16px,env(safe-area-inset-right,0px));z-index:65;width:min(340px,calc(100vw - 32px));max-height:70vh;overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-hover);padding:8px}
+.menu-item{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:0;background:none;border-radius:10px;padding:10px 12px;font:inherit;font-size:14px;font-weight:600;color:var(--ink-soft);cursor:pointer;opacity:0}
+.menu-item:hover,.menu-item:focus-visible{background:var(--leaf-soft);color:var(--indigo)}
+.menu-item i{font-style:normal;font-size:18px;flex:none}
+.menu-item span{flex:1;min-width:0}
+.menu-item em{font-style:normal;font-size:12px;font-weight:700;color:var(--slate);background:var(--leaf-soft);border-radius:999px;padding:1px 8px}
+.menu-panel:not([hidden]) .menu-item{animation:groupIn .4s cubic-bezier(.2,.8,.2,1) both}
+@media(prefers-reduced-motion:reduce){.menu-item{opacity:1;animation:none!important}}
 .info-btn{border:1px solid var(--line);background:var(--card);color:var(--indigo);border-radius:999px;padding:8px 14px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;flex:none;white-space:nowrap}
 .info-btn:hover{border-color:var(--leaf)}
 .modal-info{background:var(--card);border-radius:16px;max-width:760px;width:100%;max-height:92vh;overflow:auto;padding:28px 24px;position:relative}
@@ -214,6 +227,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
     </div>
     <button type="button" class="info-btn" id="infoBtn" data-t="navInfo"></button>
     <button type="button" class="cart-btn" id="cartBtn"><span data-t="cart"></span><b id="cartCount">0</b></button>
+    <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -303,6 +317,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
   </aside>
 </div>
 <div class="overlay" id="infoOverlay" hidden></div>
+<div class="menu-panel" id="menuPanel" hidden></div>
 <div class="toast" id="toast" hidden></div>
 
 <script src="products.js"></script>
@@ -322,7 +337,7 @@ const CONFIG = {
 
 const T = {
   uz: {
-    navCatalog:'Каталог', navAbout:'Биз ҳақимизда', navHow:'Қандай буюртма бериш', navContact:'Алоқа', navInfo:'Маълумот', cart:'Сават',
+    navCatalog:'Каталог', navAbout:'Биз ҳақимизда', navHow:'Қандай буюртма бериш', navContact:'Алоқа', navInfo:'Маълумот', cart:'Сават', sections:'Бўлимлар',
     heroEyebrow:'Тўғридан-тўғри Япониядан', heroTitle:'Япониядан асл маҳсулотлар — саломатлик ва гўзаллик учун',
     heroText:'Японияда оригинал маҳсулотлар. Ўзингизга керакли бўлимни танланг, маҳсулотни саватга қўшинг — биз уни харид қилиб, сизга етказиб берамиз.',
     heroBtn1:'Каталогни кўриш', heroBtn2:'Қандай буюртма бериш',
@@ -350,7 +365,7 @@ const T = {
     orderHead:'Янги буюртма', customer:'Мижоз'
   },
   ru: {
-    navCatalog:'Каталог', navAbout:'О нас', navHow:'Как заказать', navContact:'Контакты', navInfo:'Информация', cart:'Корзина',
+    navCatalog:'Каталог', navAbout:'О нас', navHow:'Как заказать', navContact:'Контакты', navInfo:'Информация', cart:'Корзина', sections:'Разделы',
     heroEyebrow:'Напрямую из Японии', heroTitle:'Настоящие японские товары — для здоровья и красоты',
     heroText:'Оригинальные товары из японских аптек. Выберите раздел по заболеванию или проблеме, добавьте товар в корзину — мы купим и доставим его вам.',
     heroBtn1:'Смотреть каталог', heroBtn2:'Как сделать заказ',
@@ -417,6 +432,8 @@ function applyTexts() {
   document.querySelectorAll('[data-t]').forEach(el => el.textContent = t(el.dataset.t));
   document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('on', b.dataset.lang === lang));
   $('#brand').textContent = CONFIG.brand;
+  $('#menuBtn').setAttribute('aria-label', t('sections'));
+  $('#menuBtn').title = t('sections');
   $('#footBrand').textContent = '© ' + new Date().getFullYear() + ' ' + CONFIG.brand;
   $('#search').placeholder = t('search');
   $('#custName').placeholder = t('name');
@@ -579,7 +596,31 @@ document.querySelectorAll('a[href="#catalog"]').forEach(a => a.addEventListener(
   if (!reduce) { raf = requestAnimationFrame(step); }
 })();
 
-function renderAll() { applyTexts(); renderGroups(); renderList(); renderCart(); }
+function renderMenu() {
+  const items = [{ id: 'all', icon: '🏥', name: t('all'), n: PRODUCTS.length }].concat(
+    GROUPS.map(g => ({ id: g.id, icon: g.icon, name: g[lang], n: PRODUCTS.filter(p => g.cats.includes(p.cat)).length })));
+  $('#menuPanel').innerHTML = items.map((it, i) =>
+    '<button type="button" class="menu-item" data-mg="' + it.id + '" style="animation-delay:' + (i * 60) + 'ms"><i>' + it.icon + '</i><span>' + esc(it.name) + '</span><em>' + it.n + '</em></button>').join('');
+}
+function setMenu(open) {
+  const p = $('#menuPanel');
+  p.hidden = !open;
+  $('#menuBtn').setAttribute('aria-expanded', String(open));
+  if (open) { p.scrollTop = 0; }
+}
+$('#menuBtn').addEventListener('click', () => setMenu($('#menuPanel').hidden));
+$('#menuPanel').addEventListener('click', e => {
+  const b = e.target.closest('[data-mg]');
+  if (!b) return;
+  group = b.dataset.mg; cat = 'all';
+  setMenu(false); renderGroups(); renderList(); goToList();
+});
+document.addEventListener('click', e => {
+  if (!$('#menuPanel').hidden && !e.target.closest('#menuPanel') && !e.target.closest('#menuBtn')) setMenu(false);
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+function renderAll() { applyTexts(); renderGroups(); renderMenu(); renderList(); renderCart(); }
 
 document.addEventListener('click', e => {
   const el = e.target.closest('[data-lang],[data-g],[data-c],[data-open],[data-add],[data-close],[data-q]');
