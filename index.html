@@ -529,6 +529,30 @@ function goToList() {
   if (target) target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
 }
 
+/* Бўлимлар панели компьютерда секин айланиб туради (сичқонча устида турганда тўхтайди) */
+(function autoRotateGroups() {
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const wide = window.matchMedia('(min-width:821px)');
+  let paused = false, resumeTimer = null, raf = null, frame = 0;
+  const bar = () => document.querySelector('#groups');
+  function step() {
+    const el = bar();
+    if (!el || !wide.matches || paused) { raf = null; return; }
+    if (el.scrollWidth <= el.clientWidth) { raf = null; return; }
+    frame++;
+    if (frame % 2 === 0) el.scrollLeft += 1;
+    if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) el.scrollLeft = 0;
+    raf = requestAnimationFrame(step);
+  }
+  function pause() { paused = true; clearTimeout(resumeTimer); }
+  function resume(delay) { clearTimeout(resumeTimer); resumeTimer = setTimeout(() => { paused = false; if (!raf) raf = requestAnimationFrame(step); }, delay); }
+  document.addEventListener('mouseover', e => { if (e.target.closest && e.target.closest('#groups')) pause(); });
+  document.addEventListener('mouseout', e => { if (e.target.closest && e.target.closest('#groups')) resume(2500); });
+  document.addEventListener('touchstart', e => { if (e.target.closest && e.target.closest('#groups')) pause(); }, { passive: true });
+  document.addEventListener('touchend', () => resume(3000));
+  if (!reduce) { raf = requestAnimationFrame(step); }
+})();
+
 function renderAll() { applyTexts(); renderGroups(); renderList(); renderCart(); }
 
 document.addEventListener('click', e => {
