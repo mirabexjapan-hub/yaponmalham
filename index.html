@@ -160,6 +160,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 .drawer-foot input{border:1px solid var(--line);border-radius:var(--radius-sm);padding:10px 12px;font:inherit;width:100%}
 .drawer-foot .btn{text-align:center;width:100%}
 .btn.leaf{background:var(--leaf)}.btn.leaf:hover{background:#335a3d}
+.info-btn{border:1px solid var(--line);background:var(--card);color:var(--indigo);border-radius:999px;padding:8px 14px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;flex:none;white-space:nowrap}
+.info-btn:hover{border-color:var(--leaf)}
+.modal-info{background:var(--card);border-radius:16px;max-width:760px;width:100%;max-height:92vh;overflow:auto;padding:28px 24px;position:relative}
+.modal-info section{padding:0 0 18px}
+.modal-info .band{background:none;border:0}
+.modal-info h2{font-size:24px;margin-top:4px}
+.modal-info .x{position:sticky;top:0;float:right}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--indigo-deep);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;z-index:70}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -179,6 +186,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
       <button type="button" data-lang="uz">ЎЗ</button>
       <button type="button" data-lang="ru">РУ</button>
     </div>
+    <button type="button" class="info-btn" id="infoBtn" data-t="navInfo"></button>
     <button type="button" class="cart-btn" id="cartBtn"><span data-t="cart"></span><b id="cartCount">0</b></button>
   </div>
 </header>
@@ -268,6 +276,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
     </div>
   </aside>
 </div>
+<div class="overlay" id="infoOverlay" hidden></div>
 <div class="toast" id="toast" hidden></div>
 
 <script src="products.js"></script>
@@ -287,7 +296,7 @@ const CONFIG = {
 
 const T = {
   uz: {
-    navCatalog:'Каталог', navAbout:'Биз ҳақимизда', navHow:'Қандай буюртма бериш', navContact:'Алоқа', cart:'Сават',
+    navCatalog:'Каталог', navAbout:'Биз ҳақимизда', navHow:'Қандай буюртма бериш', navContact:'Алоқа', navInfo:'Маълумот', cart:'Сават',
     heroEyebrow:'Тўғридан-тўғри Япониядан', heroTitle:'Япониядан асл маҳсулотлар — саломатлик ва гўзаллик учун',
     heroText:'Японияда оригинал маҳсулотлар. Ўзингизга керакли бўлимни танланг, маҳсулотни саватга қўшинг — биз уни харид қилиб, сизга етказиб берамиз.',
     heroBtn1:'Каталогни кўриш', heroBtn2:'Қандай буюртма бериш',
@@ -315,7 +324,7 @@ const T = {
     orderHead:'Янги буюртма', customer:'Мижоз'
   },
   ru: {
-    navCatalog:'Каталог', navAbout:'О нас', navHow:'Как заказать', navContact:'Контакты', cart:'Корзина',
+    navCatalog:'Каталог', navAbout:'О нас', navHow:'Как заказать', navContact:'Контакты', navInfo:'Информация', cart:'Корзина',
     heroEyebrow:'Напрямую из Японии', heroTitle:'Настоящие японские товары — для здоровья и красоты',
     heroText:'Оригинальные товары из японских аптек. Выберите раздел по заболеванию или проблеме, добавьте товар в корзину — мы купим и доставим его вам.',
     heroBtn1:'Смотреть каталог', heroBtn2:'Как сделать заказ',
@@ -529,6 +538,14 @@ document.addEventListener('click', e => {
 });
 $('#search').addEventListener('input', e => { query = e.target.value.trim().toLowerCase(); if (query) { group = 'all'; cat = 'all'; renderGroups(); } renderList(); });
 $('#cartBtn').addEventListener('click', () => $('#cartOverlay').hidden = false);
+function openInfo() {
+  const pick = s => document.querySelector(s).innerHTML;
+  $('#infoOverlay').innerHTML = '<div class="modal-info" role="dialog" aria-modal="true"><button type="button" class="x" data-info-close aria-label="Close">×</button>' +
+    '<section>' + pick('#about .wrap') + '</section>' + '<section>' + pick('#howto .wrap') + '</section>' + '<section>' + pick('#contact .wrap') + '</section></div>';
+  $('#infoOverlay').hidden = false;
+}
+$('#infoBtn').addEventListener('click', openInfo);
+$('#infoOverlay').addEventListener('click', e => { if (e.target.id === 'infoOverlay' || e.target.hasAttribute('data-info-close')) $('#infoOverlay').hidden = true; });
 $('#cartClose').addEventListener('click', () => $('#cartOverlay').hidden = true);
 $('#copyOrder').addEventListener('click', copyOrder);
 $('#sendTg').addEventListener('click', () => { copyOrder(); window.open('https://t.me/' + CONFIG.telegram, '_blank', 'noopener'); });
