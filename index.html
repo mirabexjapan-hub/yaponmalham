@@ -1,0 +1,532 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yaponmalham — Япониядан дори, витамин ва косметика</title>
+<meta name="description" content="Япониядан дори воситалари, витаминлар ва косметика каталоги. Ўзбекистонга етказиб бериш.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Serif:wght@600;700&display=swap">
+<style>
+:root{
+  --paper:#F4F5EE; --card:#FFFFFF; --ink:#1E2621; --ink-soft:#3A463E; --slate:#5C685E;
+  --line:#DDE2D5; --indigo:#1E3A4C; --indigo-deep:#132734; --leaf:#3F6B4A; --leaf-soft:#E9F0E7;
+  --tomato:#D8492E; --tomato-deep:#B93A22; --gold:#C89B3C;
+  --radius:12px; --radius-sm:8px; --max:1320px;
+  --shadow-card:0 1px 2px rgba(19,39,52,.05),0 1px 3px rgba(19,39,52,.04);
+  --shadow-hover:0 16px 32px -12px rgba(19,39,52,.22),0 4px 10px rgba(19,39,52,.08);
+  --serif:'Noto Serif',Georgia,serif; --sans:Inter,system-ui,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;font-family:var(--sans);font-size:16px;line-height:1.55;color:var(--ink);background:var(--paper)}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer}
+a{color:inherit}
+[hidden]{display:none!important}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:2px solid var(--tomato);outline-offset:2px}
+
+/* header */
+header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);box-shadow:0 1px 0 var(--line),0 6px 18px -14px rgba(19,39,52,.35)}
+.head{display:flex;align-items:center;gap:20px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--serif);font-weight:700;font-size:20px;color:var(--indigo);white-space:nowrap}
+.logo-mark{width:34px;height:34px;border-radius:50%;background:var(--tomato);display:grid;place-items:center;flex:none}
+.logo-mark::after{content:"";width:14px;height:14px;background:#fff;clip-path:polygon(35% 0,65% 0,65% 35%,100% 35%,100% 65%,65% 65%,65% 100%,35% 100%,35% 65%,0 65%,0 35%,35% 35%)}
+nav{display:flex;gap:22px;margin-left:auto}
+nav a{text-decoration:none;font-size:14px;font-weight:600;color:var(--ink-soft)}
+nav a:hover{color:var(--tomato)}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none}
+.lang button{border:0;background:transparent;padding:6px 12px;font-size:13px;font-weight:700;color:var(--slate)}
+.lang button.on{background:var(--indigo);color:#fff}
+.cart-btn{position:relative;border:0;background:var(--leaf);color:#fff;border-radius:999px;padding:9px 16px;font-weight:700;font-size:14px;flex:none}
+.cart-btn b{background:#fff;color:var(--leaf);border-radius:999px;padding:1px 7px;margin-left:6px;font-size:12px}
+@media(max-width:820px){nav{display:none}.lang{margin-left:auto}.logo{font-size:17px}}
+
+/* hero */
+.hero{background:linear-gradient(135deg,#132734 0%,#1E3A4C 62%,#27506A 100%);color:#fff;overflow:hidden}
+.hero-in{display:grid;grid-template-columns:1fr;gap:0;align-items:center;padding-block:18px 20px}
+.hero-pics,.hero-facts{display:none!important}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(20px,2.4vw,26px);line-height:1.25;margin:6px 0 6px;text-wrap:balance}
+.hero p{margin:0 0 12px;max-width:70ch;color:#c9d4d2;font-size:13.5px;line-height:1.5}
+.hero .eyebrow{font-size:10.5px}
+.hero .btn{padding:8px 16px;font-size:13px}
+.btn{display:inline-block;border:0;border-radius:999px;padding:12px 22px;font-weight:700;font-size:15px;text-decoration:none;background:var(--tomato);color:#fff;transition:background .15s}
+.btn:hover{background:var(--tomato-deep)}
+.btn.ghost{background:transparent;border:1.5px solid rgba(255,255,255,.55);color:#fff}
+.btn.ghost:hover{background:rgba(255,255,255,.12)}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px}
+.hero-pics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;transform:rotate(-2deg);max-width:440px;justify-self:end;width:100%}
+.hero-pics img{aspect-ratio:3/4;object-fit:cover;border-radius:var(--radius);box-shadow:0 14px 30px -12px rgba(0,0,0,.6);width:100%}
+.hero-pics img:nth-child(2){margin-top:16px}
+.hero-facts{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:16px;font-size:13px;color:#c9d4d2}
+.hero-facts b{color:#fff;font-size:20px;font-family:var(--serif);margin-right:6px}
+@media(max-width:820px){.hero-in{grid-template-columns:1fr;padding-block:24px}.hero-pics{transform:none;max-width:360px;justify-self:start}}
+
+/* sections */
+section{padding-block:52px}
+.sec-eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tomato)}
+h2{font-family:var(--serif);font-weight:700;font-size:clamp(24px,3vw,32px);color:var(--indigo);margin:6px 0 8px;text-wrap:balance}
+.sec-lead{color:var(--slate);margin:0 0 22px;max-width:70ch}
+
+/* catalog controls */
+.search{width:100%;max-width:460px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:11px 18px;font:inherit;color:var(--ink);margin-bottom:16px}
+.groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-bottom:16px}
+.group{display:flex;align-items:center;gap:10px;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:var(--radius);padding:10px 12px;font-size:14px;font-weight:600;color:var(--ink-soft);line-height:1.25;transition:border-color .15s,box-shadow .15s}
+.group:hover{border-color:var(--leaf);box-shadow:var(--shadow-card)}
+.group.on{background:var(--indigo);border-color:var(--indigo);color:#fff}
+.group i{font-style:normal;font-size:22px;flex:none}
+.group span{flex:1;min-width:0}
+.group em{font-style:normal;font-size:12px;font-weight:700;color:var(--slate);background:var(--leaf-soft);border-radius:999px;padding:1px 8px;flex:none}
+.group.on em{background:rgba(255,255,255,.18);color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;color:var(--ink-soft)}
+.chip:hover{border-color:var(--leaf)}
+.chip.on{background:var(--leaf);border-color:var(--leaf);color:#fff}
+.note{font-size:13px;color:var(--slate);background:var(--leaf-soft);border-radius:var(--radius-sm);padding:10px 14px;margin:6px 0 20px}
+.cat-title{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--indigo);margin:26px 0 12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.cat-title small{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--slate)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:16px}
+@media(max-width:520px){.grid{grid-template-columns:repeat(2,1fr);gap:10px}.groups{grid-template-columns:repeat(2,1fr)}}
+
+/* product card */
+.prod{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow-card);overflow:hidden;display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s}
+.prod:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+.prod-img{position:relative;aspect-ratio:4/3;background:var(--leaf-soft);cursor:pointer;border:0;padding:0;width:100%}
+.prod-img{display:block;overflow:hidden}
+.prod-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.badge{z-index:1;position:absolute;left:8px;top:8px;background:rgba(255,255,255,.94);color:var(--leaf);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:3px 9px;max-width:calc(100% - 16px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prod-body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.prod-name{font-family:var(--serif);font-weight:700;font-size:16px;line-height:1.25;color:var(--indigo);margin:0}
+.prod-jp{font-size:12px;color:var(--slate)}
+.prod-desc{font-size:13px;color:var(--ink-soft);margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.prod-foot{margin-top:auto;padding-top:8px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.price{font-weight:800;font-size:17px;color:var(--ink);font-variant-numeric:tabular-nums}
+.price small{font-weight:600;font-size:12px;color:var(--slate)}
+.add{border:0;background:var(--leaf);color:#fff;border-radius:999px;padding:8px 14px;font-size:13px;font-weight:700}
+.add:hover{background:#335a3d}
+.empty{padding:40px 0;color:var(--slate);text-align:center}
+
+/* about / howto */
+.band{background:var(--card);border-block:1px solid var(--line)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.step{background:var(--paper);border-radius:var(--radius);padding:18px}
+.step b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--indigo);color:#fff;font-family:var(--serif);margin-bottom:10px}
+.step h3{margin:0 0 6px;font-size:16px;color:var(--indigo)}
+.step p{margin:0;font-size:14px;color:var(--ink-soft)}
+.about p{max-width:72ch;color:var(--ink-soft)}
+.warn{border-left:4px solid var(--gold);background:#fbf6e9;color:#5a4a1c;border-radius:var(--radius-sm);padding:12px 16px;font-size:14px;max-width:80ch}
+.contacts{display:flex;flex-wrap:wrap;gap:12px}
+.contact{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;min-width:220px}
+.contact small{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
+.contact span{font-weight:700;color:var(--indigo);font-size:17px;user-select:all}
+footer{background:var(--indigo-deep);color:#b9c6c8;font-size:13px;padding-block:26px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+
+/* modal + drawer */
+.overlay{position:fixed;inset:0;z-index:60;background:rgba(19,39,52,.55);display:flex;align-items:center;justify-content:center;padding:16px}
+.modal{background:var(--card);border-radius:16px;max-width:920px;width:100%;max-height:92vh;overflow:auto;display:grid;grid-template-columns:1fr 1fr;position:relative}
+.modal-img{background:var(--indigo-deep);min-height:280px}
+.modal-img img{width:100%;height:100%;object-fit:contain;max-height:92vh}
+.modal-body{padding:24px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.modal-body h3{font-family:var(--serif);font-size:23px;line-height:1.2;color:var(--indigo);margin:0}
+.tag{align-self:flex-start;background:var(--leaf-soft);color:var(--leaf);font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px}
+.x{position:absolute;right:10px;top:10px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.92);font-size:20px;color:var(--ink);z-index:2;box-shadow:var(--shadow-card)}
+.vars{list-style:none;margin:6px 0 0;padding:0;border-top:1px solid var(--line)}
+.vars li{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.vars li span{flex:1;min-width:0}
+.vars li b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.fine{font-size:12px;color:var(--slate);margin:4px 0 0}
+.info{border-top:1px solid var(--line);padding-top:10px;margin-top:6px;font-size:14px}
+.info h4{margin:10px 0 2px;font-size:13px;color:var(--indigo);text-transform:uppercase;letter-spacing:.06em}
+.info p{margin:0;color:var(--ink-soft)}
+@media(max-width:720px){.modal{grid-template-columns:1fr}.modal-img img{max-height:44vh}}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:61;width:min(440px,100%);background:var(--card);display:flex;flex-direction:column;box-shadow:-20px 0 40px -20px rgba(0,0,0,.4)}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line)}
+.drawer-head h3{margin:0;font-family:var(--serif);color:var(--indigo);font-size:20px}
+.drawer-head button{border:0;background:none;font-size:24px;color:var(--slate)}
+.drawer-list{flex:1;overflow:auto;padding:8px 20px}
+.ci{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.ci img{width:52px;height:52px;object-fit:cover;border-radius:var(--radius-sm);flex:none}
+.ci div{flex:1;min-width:0}
+.ci small{display:block;color:var(--slate)}
+.qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:999px;flex:none}
+.qty button{border:0;background:none;width:28px;height:28px;font-size:16px;color:var(--slate)}
+.qty span{min-width:20px;text-align:center;font-weight:700}
+.drawer-foot{padding:16px 20px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.total{display:flex;justify-content:space-between;font-weight:800;font-size:18px}
+.drawer-foot input{border:1px solid var(--line);border-radius:var(--radius-sm);padding:10px 12px;font:inherit;width:100%}
+.drawer-foot .btn{text-align:center;width:100%}
+.btn.leaf{background:var(--leaf)}.btn.leaf:hover{background:#335a3d}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--indigo-deep);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;z-index:70}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap head">
+    <a class="logo" href="#top"><span class="logo-mark"></span><span id="brand"></span></a>
+    <nav>
+      <a href="#catalog" data-t="navCatalog"></a>
+      <a href="#about" data-t="navAbout"></a>
+      <a href="#howto" data-t="navHow"></a>
+      <a href="#contact" data-t="navContact"></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="uz">ЎЗ</button>
+      <button type="button" data-lang="ru">РУ</button>
+    </div>
+    <button type="button" class="cart-btn" id="cartBtn"><span data-t="cart"></span><b id="cartCount">0</b></button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="padding-block:0">
+    <div class="wrap hero-in">
+      <div>
+        <div class="eyebrow" data-t="heroEyebrow"></div>
+        <h1 data-t="heroTitle"></h1>
+        <p data-t="heroText"></p>
+        <div class="hero-btns">
+          <a class="btn" href="#catalog" data-t="heroBtn1"></a>
+          <a class="btn ghost" href="#howto" data-t="heroBtn2"></a>
+        </div>
+        <div class="hero-facts">
+          <span><b id="factProducts"></b><span data-t="factProducts"></span></span>
+          <span><b id="factCats"></b><span data-t="factCats"></span></span>
+          <span><b>100%</b><span data-t="factOrig"></span></span>
+        </div>
+      </div>
+      <div class="hero-pics" aria-hidden="true">
+        <img src="images/thumb/img_0170.jpg" alt="">
+        <img src="images/thumb/img_0218.jpg" alt="">
+        <img src="images/thumb/img_0256.jpg" alt="">
+      </div>
+    </div>
+  </section>
+
+  <section id="catalog">
+    <div class="wrap">
+      <div class="sec-eyebrow" data-t="catEyebrow"></div>
+      <h2 data-t="catTitle"></h2>
+      <p class="sec-lead" data-t="catLead"></p>
+      <input class="search" id="search" type="search" autocomplete="off">
+      <div class="groups" id="groups"></div>
+      <div class="chips" id="chips"></div>
+      <div class="note" data-t="priceNote"></div>
+      <div id="list"></div>
+    </div>
+  </section>
+
+  <section id="about" class="band about">
+    <div class="wrap">
+      <div class="sec-eyebrow" data-t="aboutEyebrow"></div>
+      <h2 data-t="aboutTitle"></h2>
+      <p data-t="about1"></p>
+      <p data-t="about2"></p>
+      <div class="warn" data-t="medWarn"></div>
+    </div>
+  </section>
+
+  <section id="howto">
+    <div class="wrap">
+      <div class="sec-eyebrow" data-t="howEyebrow"></div>
+      <h2 data-t="howTitle"></h2>
+      <div class="cols">
+        <div class="step"><b>1</b><h3 data-t="s1t"></h3><p data-t="s1"></p></div>
+        <div class="step"><b>2</b><h3 data-t="s2t"></h3><p data-t="s2"></p></div>
+        <div class="step"><b>3</b><h3 data-t="s3t"></h3><p data-t="s3"></p></div>
+        <div class="step"><b>4</b><h3 data-t="s4t"></h3><p data-t="s4"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="band">
+    <div class="wrap">
+      <div class="sec-eyebrow" data-t="conEyebrow"></div>
+      <h2 data-t="conTitle"></h2>
+      <p class="sec-lead" data-t="conLead"></p>
+      <div class="contacts" id="contacts"></div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span id="footBrand"></span><span data-t="footNote"></span></div></footer>
+
+<div class="overlay" id="modal" hidden></div>
+<div class="overlay" id="cartOverlay" hidden style="justify-content:flex-end;padding:0">
+  <aside class="drawer">
+    <div class="drawer-head"><h3 data-t="cart"></h3><button type="button" id="cartClose" aria-label="Close">×</button></div>
+    <div class="drawer-list" id="cartList"></div>
+    <div class="drawer-foot">
+      <div class="total"><span data-t="total"></span><span id="cartTotal"></span></div>
+      <input id="custName" type="text" autocomplete="name">
+      <input id="custPhone" type="tel" autocomplete="tel">
+      <button type="button" class="btn leaf" id="sendTg"></button>
+      <button type="button" class="btn" id="copyOrder" data-t="copyOrder"></button>
+      <p class="fine" data-t="orderFine"></p>
+    </div>
+  </aside>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="products.js"></script>
+<script src="info.js"></script>
+<script>
+/* ================= СОЗЛАМАЛАР — шу ерни ўзгартиринг ================= */
+const CONFIG = {
+  brand: 'Yaponmalham',      // сайт номи
+  telegram: 'mir_sodik',      // Telegram username (@ сиз), масалан: 'yaponiya_apteka'
+  phone: '+81 70 3895 0777',  // телефон, масалан: '+998 90 123 45 67'
+  whatsapp: '',               // WhatsApp рақами фақат рақамлар, масалан: '998901234567'
+  showPrices: true,           // false — нархлар кўрсатилмайди («сўров бўйича»)
+  yenToUzs: 0                 // 1 иен = неча сўм (0 — сўмда кўрсатилмайди), масалан: 82
+};
+/* ==================================================================== */
+
+const T = {
+  uz: {
+    navCatalog:'Каталог', navAbout:'Биз ҳақимизда', navHow:'Қандай буюртма бериш', navContact:'Алоқа', cart:'Сават',
+    heroEyebrow:'Тўғридан-тўғри Япониядан', heroTitle:'Япониядан асл маҳсулотлар — саломатлик ва гўзаллик учун',
+    heroText:'Япония дорихоналаридаги оригинал маҳсулотлар. Касаллик ёки муаммо бўйича бўлимни танланг, маҳсулотни саватга қўшинг — биз сотиб олиб, сизга етказиб берамиз.',
+    heroBtn1:'Каталогни кўриш', heroBtn2:'Қандай буюртма бериш',
+    factProducts:'маҳсулот тури', factCats:'бўлим', factOrig:'оригинал, Япония дўконидан',
+    catEyebrow:'Каталог', catTitle:'Касалликлар бўйича бўлимлар', catLead:'Бўлимни танланг ёки маҳсулот номини қидиринг. Расмни боссангиз — батафсил маълумот ва барча ҳажмлар.',
+    search:'Қидириш: шамоллаш, витамин, Anessa…', all:'Барчаси',
+    priceNote:'Нархлар — Япониядаги дўкон нархи (иенада, солиқ билан). Якуний нарх ва етказиб бериш ҳақи буюртмада тасдиқланади.',
+    from:'дан', add:'Саватга', choose:'Танлаш', onRequest:'Нарх сўров бўйича', items:'та маҳсулот', empty:'Ҳеч нарса топилмади.',
+    variants:'Ҳажм ва нархлар', jpName:'Японча номи',
+    aboutEyebrow:'Биз ҳақимизда', aboutTitle:'Япония сифати — уйингизда',
+    about1:'Биз Японияда яшаймиз ва маҳсулотларни бевосита йирик дорихона тармоқларидан сотиб оламиз. Каталогдаги ҳар бир расм — ҳақиқий дўкон пештахтасидан олинган.',
+    about2:'Дори, витамин, биологик фаол қўшимчалар, тери ва соч парвариши воситалари — барчаси оригинал қадоқда, яроқлилик муддати текширилган ҳолда юборилади.',
+    medWarn:'Диққат: сайтдаги маълумотлар танишиш учун берилган ва шифокор маслаҳати ўрнини босмайди. Дори воситасини қўллашдан олдин шифокор билан маслаҳатлашинг ва йўриқномани ўқинг.',
+    howEyebrow:'Буюртма', howTitle:'Қандай буюртма бериш',
+    s1t:'Маҳсулотни танланг', s1:'Каталогдан керакли маҳсулот ва ҳажмни саватга қўшинг.',
+    s2t:'Буюртмани юборинг', s2:'Саватда исм ва телефонингизни ёзинг, буюртмани Telegram орқали юборинг.',
+    s3t:'Тасдиқлаш ва тўлов', s3:'Менежер якуний нарх, етказиб бериш ҳақи ва муддатини тасдиқлайди.',
+    s4t:'Етказиб бериш', s4:'Маҳсулот Япониядан Ўзбекистонга юборилади ва сизга топширилади.',
+    conEyebrow:'Алоқа', conTitle:'Саволингиз борми?', conLead:'Каталогда йўқ маҳсулот керак бўлса ҳам ёзинг — Япониядан топиб берамиз.',
+    phone:'Телефон', noContacts:'Алоқа маълумотлари тез орада қўшилади.',
+    footNote:'Маълумотлар шифокор маслаҳати ўрнини босмайди.',
+    total:'Жами', name:'Исмингиз', phonePh:'Телефон рақамингиз', sendTg:'Telegram орқали юбориш', copyOrder:'Буюртма матнини нусхалаш',
+    orderFine:'Буюртма матни нусхаланади — уни менежерга юборинг. Якуний нарх тасдиқлангандан кейин тўлов қилинади.',
+    cartEmpty:'Сават бўш. Каталогдан маҳсулот қўшинг.', added:'Саватга қўшилди', copied:'Буюртма матни нусхаланди',
+    orderHead:'Янги буюртма', customer:'Мижоз'
+  },
+  ru: {
+    navCatalog:'Каталог', navAbout:'О нас', navHow:'Как заказать', navContact:'Контакты', cart:'Корзина',
+    heroEyebrow:'Напрямую из Японии', heroTitle:'Настоящие японские товары — для здоровья и красоты',
+    heroText:'Оригинальные товары из японских аптек. Выберите раздел по заболеванию или проблеме, добавьте товар в корзину — мы купим и доставим его вам.',
+    heroBtn1:'Смотреть каталог', heroBtn2:'Как сделать заказ',
+    factProducts:'позиций', factCats:'разделов', factOrig:'оригинал из японских аптек',
+    catEyebrow:'Каталог', catTitle:'Разделы по заболеваниям', catLead:'Выберите раздел или найдите товар по названию. Нажмите на фото — откроется описание и все варианты упаковки.',
+    search:'Поиск: простуда, витамины, Anessa…', all:'Все',
+    priceNote:'Цены — розничные в Японии (в иенах, с налогом). Итоговая цена и стоимость доставки подтверждаются при заказе.',
+    from:'от', add:'В корзину', choose:'Выбрать', onRequest:'Цена по запросу', items:'товаров', empty:'Ничего не найдено.',
+    variants:'Упаковки и цены', jpName:'Название на японском',
+    aboutEyebrow:'О нас', aboutTitle:'Японское качество — у вас дома',
+    about1:'Мы живём в Японии и покупаем товары напрямую в крупных аптечных сетях. Каждое фото в каталоге сделано на настоящей полке магазина.',
+    about2:'Лекарства, витамины, БАДы, средства для ухода за кожей и волосами — всё в оригинальной упаковке, с проверенным сроком годности.',
+    medWarn:'Внимание: информация на сайте носит ознакомительный характер и не заменяет консультацию врача. Перед применением лекарства проконсультируйтесь с врачом и прочитайте инструкцию.',
+    howEyebrow:'Заказ', howTitle:'Как сделать заказ',
+    s1t:'Выберите товар', s1:'Добавьте нужный товар и упаковку в корзину.',
+    s2t:'Отправьте заказ', s2:'Укажите в корзине имя и телефон и отправьте заказ через Telegram.',
+    s3t:'Подтверждение и оплата', s3:'Менеджер подтвердит итоговую цену, стоимость и срок доставки.',
+    s4t:'Доставка', s4:'Товар отправляется из Японии в Узбекистан и передаётся вам.',
+    conEyebrow:'Контакты', conTitle:'Есть вопросы?', conLead:'Напишите, даже если нужного товара нет в каталоге — найдём его в Японии.',
+    phone:'Телефон', noContacts:'Контактные данные скоро появятся.',
+    footNote:'Информация не заменяет консультацию врача.',
+    total:'Итого', name:'Ваше имя', phonePh:'Ваш номер телефона', sendTg:'Отправить через Telegram', copyOrder:'Скопировать текст заказа',
+    orderFine:'Текст заказа будет скопирован — отправьте его менеджеру. Оплата после подтверждения итоговой цены.',
+    cartEmpty:'Корзина пуста. Добавьте товары из каталога.', added:'Добавлено в корзину', copied:'Текст заказа скопирован',
+    orderHead:'Новый заказ', customer:'Клиент'
+  }
+};
+
+const UZ_UNITS = [[' шт',' дона'],[' дн.',' кун'],['Запаска','Тўлдиргич'],['запаска','тўлдиргич'],['приёмов','марта'],['пары','жуфт'],['пар','жуфт'],['пара','жуфт'],
+  ['упаковка','қадоқ'],['Большая','Катта'],['Большой','Катта'],['большая','катта'],['Стандарт','Стандарт'],['Обычная','Оддий'],['Мини','Мини'],['Детские','Болалар учун'],['Взрослые','Катталар учун'],
+  ['для взрослых','катталар учун'],['детский','болалар'],['Жидкость','Суюқлик'],['жидкий','суюқ'],['Мазь','Малҳам'],['мазь','малҳам'],['Гель','Гель'],['Лосьон','Лосьон'],['лосьон','лосьон'],
+  ['Эмульсия','Эмульсия'],['Сыворотка','Зардоб'],['сыворотка','зардоб'],['Шампунь','Шампунь'],['Кондиционер','Кондиционер'],['Масло','Мой'],['Пенка для умывания','Ювиш кўпиги'],['Пенка','Кўпик'],
+  ['Туба','Туба'],['Банка','Банка'],['маска','ниқоб'],['Пробный набор','Синов тўплами'],['Увлажняющий гель','Намлантирувчи гель'],['от морщин','ажинга қарши'],['от стоматита','стоматитга қарши'],
+  ['от кашля','йўталга қарши'],['от простуды','шамоллашга қарши'],['для горла','томоқ учун'],['спрей','спрей'],['сироп','сироп'],['На носки','Пайпоққа'],['Для рук','Қўл учун'],['Клеящаяся','Ёпишадиган'],
+  ['для пяток','товон учун'],['для льда','муз учун'],['охлаждающий','совутувчи'],['пакет','халта'],['железо','темир'],['внутрь','ичиш учун'],['Помпа','Помпа'],['Дневная','Кундузги'],['Без абразива','Абразивсиз'],
+  ['густое','қуюқ'],['лёгкое','енгил'],['Жирный крем','Ёғли крем'],['для тела','тана учун'],['рисовая','гуручли'],['от акне','акнега қарши'],['все размеры','барча ўлчамлар'],['гранулы','гранула'],['Глюкозамин','Глюкозамин'],['молочко','сут']];
+
+let lang = 'uz', group = 'all', cat = 'all', query = '';
+let cart = [];
+try { lang = localStorage.getItem('apteka_lang') || 'uz'; cart = JSON.parse(localStorage.getItem('apteka_cart') || '[]'); } catch (e) {}
+
+const $ = s => document.querySelector(s);
+const t = k => T[lang][k] || k;
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const yen = n => '¥' + n.toLocaleString('en-US');
+const label = s => lang === 'uz' ? UZ_UNITS.reduce((a, [r, u]) => a.split(r).join(u), s) : s;
+const byId = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
+const pname = p => lang === 'uz' && NAME_UZ[p.id] ? NAME_UZ[p.id] : p.name;
+const groupOf = c => GROUPS.find(g => g.cats.includes(c));
+function priceHtml(n) {
+  let h = yen(n);
+  if (CONFIG.yenToUzs > 0) h += ' <small>≈ ' + Math.round(n * CONFIG.yenToUzs / 1000).toLocaleString('ru-RU') + ' 000 ' + (lang === 'uz' ? 'сўм' : 'сум') + '</small>';
+  return h;
+}
+function minPrice(p) { return p.v.length ? Math.min(...p.v.map(v => v[1])) : null; }
+function save() { try { localStorage.setItem('apteka_cart', JSON.stringify(cart)); localStorage.setItem('apteka_lang', lang); } catch (e) {} }
+function toast(msg) { const el = $('#toast'); el.textContent = msg; el.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => el.hidden = true, 1800); }
+
+function applyTexts() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-t]').forEach(el => el.textContent = t(el.dataset.t));
+  document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('on', b.dataset.lang === lang));
+  $('#brand').textContent = CONFIG.brand;
+  $('#footBrand').textContent = '© ' + new Date().getFullYear() + ' ' + CONFIG.brand;
+  $('#search').placeholder = t('search');
+  $('#custName').placeholder = t('name');
+  $('#custPhone').placeholder = t('phonePh');
+  $('#sendTg').textContent = t('sendTg');
+  $('#sendTg').hidden = !CONFIG.telegram;
+  $('#factProducts').textContent = PRODUCTS.length;
+  $('#factCats').textContent = Object.keys(CATS).filter(c => PRODUCTS.some(p => p.cat === c)).length;
+  const c = [];
+  if (CONFIG.telegram) c.push('<a class="contact" href="https://t.me/' + esc(CONFIG.telegram) + '" target="_blank" rel="noopener" style="text-decoration:none"><small>Telegram</small><span>@' + esc(CONFIG.telegram) + '</span></a>');
+  if (CONFIG.whatsapp) c.push('<a class="contact" href="https://wa.me/' + esc(CONFIG.whatsapp) + '" target="_blank" rel="noopener" style="text-decoration:none"><small>WhatsApp</small><span>+' + esc(CONFIG.whatsapp) + '</span></a>');
+  if (CONFIG.phone) c.push('<div class="contact"><small>' + t('phone') + '</small><span>' + esc(CONFIG.phone) + '</span></div>');
+  $('#contacts').innerHTML = c.join('') || '<p class="sec-lead">' + t('noContacts') + '</p>';
+}
+
+function matches(p) {
+  if (!query) return true;
+  const g = groupOf(p.cat);
+  const hay = [p.name, NAME_UZ[p.id] || '', p.jp, p.ru, p.uz, CATS[p.cat].ru, CATS[p.cat].uz, g ? g.ru + ' ' + g.uz : '', p.v.map(v => v[0]).join(' ')].join(' ').toLowerCase();
+  return query.split(/\s+/).every(w => hay.includes(w));
+}
+
+function renderGroups() {
+  const count = g => PRODUCTS.filter(p => g.cats.includes(p.cat)).length;
+  $('#groups').innerHTML =
+    '<button type="button" class="group' + (group === 'all' ? ' on' : '') + '" data-g="all"><i>🏥</i><span>' + t('all') + '</span><em>' + PRODUCTS.length + '</em></button>' +
+    GROUPS.map(g => '<button type="button" class="group' + (group === g.id ? ' on' : '') + '" data-g="' + g.id + '"><i>' + g.icon + '</i><span>' + esc(g[lang]) + '</span><em>' + count(g) + '</em></button>').join('');
+  const g = GROUPS.find(x => x.id === group);
+  const cats = g ? g.cats.filter(c => PRODUCTS.some(p => p.cat === c)) : [];
+  $('#chips').innerHTML = cats.length > 1
+    ? '<button type="button" class="chip' + (cat === 'all' ? ' on' : '') + '" data-c="all">' + t('all') + '</button>' +
+      cats.map(c => '<button type="button" class="chip' + (cat === c ? ' on' : '') + '" data-c="' + c + '">' + esc(CATS[c][lang]) + '</button>').join('')
+    : '';
+}
+
+function cardHtml(p) {
+  const mp = minPrice(p);
+  let price = '<span class="price"><small>' + t('onRequest') + '</small></span>';
+  if (CONFIG.showPrices && mp !== null) {
+    price = '<span class="price">' + (p.v.length > 1 && lang === 'ru' ? '<small>' + t('from') + '</small> ' : '') + priceHtml(mp) + (p.v.length > 1 && lang === 'uz' ? ' <small>' + t('from') + '</small>' : '') + '</span>';
+  }
+  return '<article class="prod">' +
+    '<button type="button" class="prod-img" data-open="' + p.id + '" aria-label="' + esc(pname(p)) + '"><span class="badge">' + esc(CATS[p.cat][lang]) + '</span>' +
+    '<img src="images/thumb/' + p.img + '" alt="' + esc(pname(p)) + '" loading="lazy" decoding="async"></button>' +
+    '<div class="prod-body"><h3 class="prod-name">' + esc(pname(p)) + '</h3><div class="prod-jp">' + esc(p.jp) + '</div>' +
+    '<p class="prod-desc">' + esc(p[lang]) + '</p>' +
+    '<div class="prod-foot">' + price +
+    (p.v.length === 1 ? '<button type="button" class="add" data-add="' + p.id + '|0">' + t('add') + '</button>' : '<button type="button" class="add" data-open="' + p.id + '">' + t('choose') + '</button>') +
+    '</div></div></article>';
+}
+
+function renderList() {
+  const g = GROUPS.find(x => x.id === group);
+  let html = '';
+  (g ? [g] : GROUPS).forEach(gr => {
+    gr.cats.forEach(c => {
+      if (g && cat !== 'all' && cat !== c) return;
+      const items = PRODUCTS.filter(p => p.cat === c && matches(p));
+      if (!items.length) return;
+      html += '<h3 class="cat-title">' + gr.icon + ' ' + esc(CATS[c][lang]) + ' <small>' + items.length + ' ' + t('items') + '</small></h3><div class="grid">' + items.map(cardHtml).join('') + '</div>';
+    });
+  });
+  $('#list').innerHTML = html || '<p class="empty">' + t('empty') + '</p>';
+}
+
+function infoHtml(p) {
+  const d = typeof INFO !== 'undefined' && INFO[p.id] ? INFO[p.id][lang] : null;
+  if (!d) return '';
+  const L = lang === 'uz'
+    ? { use: 'Нима учун', how: 'Қандай қўлланилади', warn: 'Огоҳлантириш' }
+    : { use: 'Для чего', how: 'Как применять', warn: 'Предостережения' };
+  return '<div class="info"><h4>' + L.use + '</h4><p>' + esc(d.use) + '</p><h4>' + L.how + '</h4><p>' + esc(d.how) + '</p><h4>' + L.warn + '</h4><p>' + esc(d.warn) + '</p></div>';
+}
+
+function openModal(id) {
+  const p = byId[id]; if (!p) return;
+  const vars = p.v.map((v, i) => '<li><span>' + esc(label(v[0])) + '</span>' + (CONFIG.showPrices ? '<b>' + priceHtml(v[1]) + '</b>' : '') +
+    '<button type="button" class="add" data-add="' + p.id + '|' + i + '">' + t('add') + '</button></li>').join('');
+  $('#modal').innerHTML = '<div class="modal" role="dialog" aria-modal="true"><button type="button" class="x" data-close aria-label="Close">×</button>' +
+    '<div class="modal-img"><img src="images/full/' + p.img + '" alt="' + esc(pname(p)) + '"></div>' +
+    '<div class="modal-body"><span class="tag">' + esc(CATS[p.cat][lang]) + '</span><h3>' + esc(pname(p)) + '</h3>' +
+    '<div class="prod-jp">' + t('jpName') + ': ' + esc(p.jp) + '</div><p style="margin:0">' + esc(p[lang]) + '</p>' +
+    (vars ? '<div style="font-weight:700;margin-top:6px">' + t('variants') + '</div><ul class="vars">' + vars + '</ul>' : '<p class="fine">' + t('onRequest') + '</p>') +
+    infoHtml(p) +
+    '<p class="fine">' + t('priceNote') + '</p><p class="fine">' + t('medWarn') + '</p></div></div>';
+  $('#modal').hidden = false;
+}
+
+function addToCart(key) {
+  const it = cart.find(c => c.k === key);
+  if (it) it.q++; else cart.push({ k: key, q: 1 });
+  save(); renderCart(); toast(t('added'));
+}
+function cartLines() {
+  return cart.map(c => { const [id, i] = c.k.split('|'); const p = byId[id]; return p && p.v[i] ? { c, p, v: p.v[i] } : null; }).filter(Boolean);
+}
+function renderCart() {
+  const lines = cartLines();
+  $('#cartCount').textContent = lines.reduce((s, l) => s + l.c.q, 0);
+  $('#cartList').innerHTML = lines.length ? lines.map(l =>
+    '<div class="ci"><img src="images/thumb/' + l.p.img + '" alt=""><div><b>' + esc(pname(l.p)) + '</b><small>' + esc(label(l.v[0])) + (CONFIG.showPrices ? ' · ' + yen(l.v[1]) : '') + '</small></div>' +
+    '<div class="qty"><button type="button" data-q="-1" data-k="' + l.c.k + '" aria-label="-">−</button><span>' + l.c.q + '</span><button type="button" data-q="1" data-k="' + l.c.k + '" aria-label="+">+</button></div></div>').join('')
+    : '<p class="empty">' + t('cartEmpty') + '</p>';
+  $('#cartTotal').innerHTML = CONFIG.showPrices ? priceHtml(lines.reduce((s, l) => s + l.c.q * l.v[1], 0)) : '—';
+}
+function orderText() {
+  const lines = cartLines();
+  let s = '🛒 ' + t('orderHead') + ' — ' + CONFIG.brand + '\n';
+  const n = $('#custName').value.trim(), ph = $('#custPhone').value.trim();
+  if (n || ph) s += t('customer') + ': ' + [n, ph].filter(Boolean).join(', ') + '\n';
+  s += '\n' + lines.map((l, i) => (i + 1) + '. ' + pname(l.p) + ' (' + l.p.jp + ') — ' + label(l.v[0]) + ' × ' + l.c.q + (CONFIG.showPrices ? ' = ' + yen(l.v[1] * l.c.q) : '')).join('\n');
+  if (CONFIG.showPrices) s += '\n\n' + t('total') + ': ' + yen(lines.reduce((a, l) => a + l.c.q * l.v[1], 0));
+  return s;
+}
+function copyOrder() {
+  const text = orderText();
+  const done = () => toast(t('copied'));
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+  function fallback() { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) {} ta.remove(); }
+}
+
+function renderAll() { applyTexts(); renderGroups(); renderList(); renderCart(); }
+
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-lang],[data-g],[data-c],[data-open],[data-add],[data-close],[data-q]');
+  if (e.target.id === 'modal') { $('#modal').hidden = true; return; }
+  if (e.target.id === 'cartOverlay') { $('#cartOverlay').hidden = true; return; }
+  if (!el) return;
+  if (el.dataset.lang) { lang = el.dataset.lang; save(); renderAll(); if (!$('#modal').hidden) $('#modal').hidden = true; }
+  else if (el.dataset.g) { group = el.dataset.g; cat = 'all'; renderGroups(); renderList(); }
+  else if (el.dataset.c) { cat = el.dataset.c; renderGroups(); renderList(); }
+  else if (el.dataset.add) addToCart(el.dataset.add);
+  else if (el.dataset.open) openModal(el.dataset.open);
+  else if ('close' in el.dataset) $('#modal').hidden = true;
+  else if (el.dataset.q) {
+    const it = cart.find(c => c.k === el.dataset.k);
+    if (it) { it.q += Number(el.dataset.q); if (it.q <= 0) cart = cart.filter(c => c !== it); save(); renderCart(); }
+  }
+});
+$('#search').addEventListener('input', e => { query = e.target.value.trim().toLowerCase(); if (query) { group = 'all'; cat = 'all'; renderGroups(); } renderList(); });
+$('#cartBtn').addEventListener('click', () => $('#cartOverlay').hidden = false);
+$('#cartClose').addEventListener('click', () => $('#cartOverlay').hidden = true);
+$('#copyOrder').addEventListener('click', copyOrder);
+$('#sendTg').addEventListener('click', () => { copyOrder(); window.open('https://t.me/' + CONFIG.telegram, '_blank', 'noopener'); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { $('#modal').hidden = true; $('#cartOverlay').hidden = true; } });
+
+renderAll();
+</script>
+</body>
+</html>
