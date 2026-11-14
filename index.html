@@ -280,7 +280,8 @@ const CONFIG = {
   phone: '+81 70 3895 0777',  // телефон, масалан: '+998 90 123 45 67'
   whatsapp: '',               // WhatsApp рақами фақат рақамлар, масалан: '998901234567'
   showPrices: true,           // false — нархлар кўрсатилмайди («сўров бўйича»)
-  yenToUzs: 0                 // 1 иен = неча сўм (0 — сўмда кўрсатилмайди), масалан: 82
+  yenToUzs: 82,               // 1 иен = неча сўм (0 — сўмда кўрсатилмайди). ЖОРИЙ КУРСНИ ЎРНАТИНГ
+  yenPerUsd: 150              // 1 доллар = неча иен (0 — долларда кўрсатилмайди). ЖОРИЙ КУРСНИ ЎРНАТИНГ
 };
 /* ==================================================================== */
 
@@ -366,7 +367,10 @@ const pname = p => lang === 'uz' && NAME_UZ[p.id] ? NAME_UZ[p.id] : p.name;
 const groupOf = c => GROUPS.find(g => g.cats.includes(c));
 function priceHtml(n) {
   let h = yen(n);
-  if (CONFIG.yenToUzs > 0) h += ' <small>≈ ' + Math.round(n * CONFIG.yenToUzs / 1000).toLocaleString('ru-RU') + ' 000 ' + (lang === 'uz' ? 'сўм' : 'сум') + '</small>';
+  const parts = [];
+  if (CONFIG.yenToUzs > 0) parts.push((Math.round(n * CONFIG.yenToUzs / 1000) * 1000).toLocaleString('ru-RU') + ' ' + (lang === 'uz' ? 'сўм' : 'сум'));
+  if (CONFIG.yenPerUsd > 0) parts.push('$' + (n / CONFIG.yenPerUsd).toFixed(2));
+  if (parts.length) h += ' <small>≈ ' + parts.join(' · ') + '</small>';
   return h;
 }
 function minPrice(p) { return p.v.length ? Math.min(...p.v.map(v => v[1])) : null; }
