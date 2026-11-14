@@ -633,14 +633,16 @@ function renderMenu() {
 let menuTimer = null;
 function setMenu(open) {
   const p = $('#menuPanel');
+  if (!open) menuHovered = false;
   p.hidden = !open;
   $('#menuBtn').setAttribute('aria-expanded', String(open));
   clearTimeout(menuTimer);
   if (open) { p.scrollTop = 0; }
 }
 /* Сичқонча менюдан чиққач, 2.5 секунддан кейин меню ўзи ёпилади */
-function menuLeave() { if (!$('#menuPanel').hidden) { clearTimeout(menuTimer); menuTimer = setTimeout(() => setMenu(false), 2500); } }
-function menuEnter() { clearTimeout(menuTimer); }
+let menuHovered = false;
+function menuLeave() { if (menuHovered && !$('#menuPanel').hidden) { clearTimeout(menuTimer); menuTimer = setTimeout(() => setMenu(false), 2500); } }
+function menuEnter() { menuHovered = true; clearTimeout(menuTimer); }
 ['#menuPanel', '#menuBtn'].forEach(sel => {
   const el = $(sel);
   el.addEventListener('mouseenter', menuEnter);
@@ -659,6 +661,7 @@ document.addEventListener('click', e => {
 });
 /* «Каталог» (шапка ва «Каталогни кўриш») — бўлимлар менюсини очади */
 document.querySelectorAll('a[href="#catalog"]').forEach(a => a.addEventListener('click', () => {
+  menuHovered = false; // автоёпилиш фақат сичқонча менюга кирганидан кейин ишлайди
   setMenu(true);
 }));
 document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
