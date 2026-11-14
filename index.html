@@ -501,6 +501,12 @@ function copyOrder() {
   function fallback() { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) {} ta.remove(); }
 }
 
+function goToList() {
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const target = document.querySelector('.cat-title') || $('#list');
+  if (target) target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+}
+
 function renderAll() { applyTexts(); renderGroups(); renderList(); renderCart(); }
 
 document.addEventListener('click', e => {
@@ -509,8 +515,8 @@ document.addEventListener('click', e => {
   if (e.target.id === 'cartOverlay') { $('#cartOverlay').hidden = true; return; }
   if (!el) return;
   if (el.dataset.lang) { lang = el.dataset.lang; save(); renderAll(); if (!$('#modal').hidden) $('#modal').hidden = true; }
-  else if (el.dataset.g) { group = el.dataset.g; cat = 'all'; renderGroups(); renderList(); }
-  else if (el.dataset.c) { cat = el.dataset.c; renderGroups(); renderList(); }
+  else if (el.dataset.g) { group = el.dataset.g; cat = 'all'; renderGroups(); renderList(); goToList(); }
+  else if (el.dataset.c) { cat = el.dataset.c; renderGroups(); renderList(); goToList(); }
   else if (el.dataset.add) addToCart(el.dataset.add);
   else if (el.dataset.open) openModal(el.dataset.open);
   else if ('close' in el.dataset) $('#modal').hidden = true;
