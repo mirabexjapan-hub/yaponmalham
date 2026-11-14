@@ -214,6 +214,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 @media(max-width:820px){.search-top{width:100%;margin-left:0}}
 #about{display:none!important}
 header a[href="#about"]{display:none!important}
+body[data-view] main > section:not(#catalog):not(#howto):not(#contact){display:none!important}
+body[data-view="catalog"] main > section:not(#catalog){display:none!important}
+body[data-view="howto"] main > section:not(#howto){display:none!important}
+body[data-view="howto"] main > section#howto{padding-top:40px;min-height:70vh}
 .info-btn{border:1px solid var(--line);background:var(--card);color:var(--indigo);border-radius:999px;padding:8px 14px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;flex:none;white-space:nowrap}
 .info-btn:hover{border-color:var(--leaf)}
 .modal-info{background:var(--card);border-radius:16px;max-width:760px;width:100%;max-height:92vh;overflow:auto;padding:28px 24px;position:relative}
@@ -661,10 +665,26 @@ document.addEventListener('click', e => {
   if (e.target.closest('a[href="#catalog"]')) return; // «Каталог» тугмаси менюни очади
   if (!$('#menuPanel').hidden && !e.target.closest('#menuPanel') && !e.target.closest('#menuBtn')) setMenu(false);
 });
-/* «Каталог» (шапка ва «Каталогни кўриш») — бўлимлар менюсини очади */
+/* Бир бўлим режими: фақат танланган бўлим кўринади */
+function setView(name) {
+  if (name) document.body.setAttribute('data-view', name); else document.body.removeAttribute('data-view');
+  window.scrollTo({ top: 0, behavior: 'auto' });
+}
+/* «Каталог» (шапка ва «Каталогни кўриш») — бўлимлар менюсини очади ва каталогни ажратади */
 document.querySelectorAll('a[href="#catalog"]').forEach(a => a.addEventListener('click', () => {
   menuHovered = false; // автоёпилиш фақат сичқонча менюга кирганидан кейин ишлайди
+  setView('catalog');
   setMenu(true);
+}));
+document.querySelectorAll('a[href="#howto"]').forEach(a => a.addEventListener('click', e => {
+  e.preventDefault();
+  setMenu(false);
+  setView('howto');
+}));
+document.querySelectorAll('a.logo').forEach(a => a.addEventListener('click', e => {
+  e.preventDefault();
+  setMenu(false);
+  setView(null);
 }));
 document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 
