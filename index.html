@@ -56,7 +56,9 @@ nav a:hover{color:var(--tomato)}
 .btn:hover{background:var(--tomato-deep)}
 .btn.ghost{background:transparent;border:1.5px solid rgba(255,255,255,.55);color:#fff}
 .btn.ghost:hover{background:rgba(255,255,255,.12)}
-.hero-btns{display:flex;flex-wrap:wrap;gap:12px}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.search-icon{margin-left:auto;width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(255,255,255,.55);background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer;flex:none}
+.search-icon:hover{background:rgba(255,255,255,.12)}
 .hero-pics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;transform:rotate(-2deg);max-width:440px;justify-self:end;width:100%}
 .hero-pics img{aspect-ratio:3/4;object-fit:cover;border-radius:var(--radius);box-shadow:0 14px 30px -12px rgba(0,0,0,.6);width:100%}
 .hero-pics img:nth-child(2){margin-top:16px}
@@ -240,6 +242,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
         <div class="hero-btns">
           <a class="btn" href="#catalog" data-t="heroBtn1"></a>
           <a class="btn ghost" href="#howto" data-t="heroBtn2"></a>
+          <button type="button" class="search-icon" id="searchIcon" aria-label="Qidiruv" title="Qidiruv">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+          </button>
         </div>
         <div class="hero-facts">
           <span><b id="factProducts"></b><span data-t="factProducts"></span></span>
@@ -646,6 +651,11 @@ function openInfo() {
   $('#infoOverlay').hidden = false;
 }
 $('#infoBtn').addEventListener('click', openInfo);
+$('#searchIcon').addEventListener('click', () => {
+  const s = $('#search');
+  s.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  setTimeout(() => s.focus({ preventScroll: true }), 350);
+});
 $('#infoOverlay').addEventListener('click', e => { if (e.target.id === 'infoOverlay' || e.target.hasAttribute('data-info-close')) $('#infoOverlay').hidden = true; });
 $('#cartClose').addEventListener('click', () => $('#cartOverlay').hidden = true);
 $('#copyOrder').addEventListener('click', copyOrder);
