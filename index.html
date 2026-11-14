@@ -221,6 +221,8 @@ header a[href="#about"]{display:none!important}
 .modal-info .band{background:none;border:0}
 .modal-info h2{font-size:24px;margin-top:4px}
 .modal-info .x{position:sticky;top:0;float:right}
+.modal-contact{max-width:520px}
+.modal-contact .contacts{display:flex;flex-wrap:wrap;gap:12px}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--indigo-deep);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;z-index:70}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -693,6 +695,15 @@ function openInfo() {
   $('#infoOverlay').hidden = false;
 }
 $('#infoBtn').addEventListener('click', openInfo);
+/* «Алоқа» — фақат алоқа маълумотлари алоҳида ойнада */
+function openContact(e) {
+  if (e) e.preventDefault();
+  const title = lang === 'uz' ? 'Алоқа' : 'Контакты';
+  $('#infoOverlay').innerHTML = '<div class="modal-info modal-contact" role="dialog" aria-modal="true"><button type="button" class="x" data-info-close aria-label="Close">×</button>' +
+    '<h2>' + title + '</h2><div class="contacts">' + $('#contacts').innerHTML + '</div></div>';
+  $('#infoOverlay').hidden = false;
+}
+document.querySelectorAll('header a[href="#contact"]').forEach(a => a.addEventListener('click', openContact));
 $('#infoOverlay').addEventListener('click', e => { if (e.target.id === 'infoOverlay' || e.target.hasAttribute('data-info-close')) $('#infoOverlay').hidden = true; });
 $('#cartClose').addEventListener('click', () => $('#cartOverlay').hidden = true);
 $('#copyOrder').addEventListener('click', copyOrder);
