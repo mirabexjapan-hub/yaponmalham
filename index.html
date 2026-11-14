@@ -654,8 +654,13 @@ $('#menuPanel').addEventListener('click', e => {
   setMenu(false); renderGroups(); renderList(); goToList();
 });
 document.addEventListener('click', e => {
+  if (e.target.closest('a[href="#catalog"]')) return; // «Каталог» тугмаси менюни очади
   if (!$('#menuPanel').hidden && !e.target.closest('#menuPanel') && !e.target.closest('#menuBtn')) setMenu(false);
 });
+/* «Каталог» (шапка ва «Каталогни кўриш») — бўлимлар менюсини очади */
+document.querySelectorAll('a[href="#catalog"]').forEach(a => a.addEventListener('click', () => {
+  setMenu(true);
+}));
 document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 
 function renderAll() { applyTexts(); renderGroups(); renderMenu(); renderList(); renderCart(); }
