@@ -82,12 +82,22 @@ h2{font-family:var(--serif);font-weight:700;font-size:clamp(24px,3vw,32px);color
 @media(min-width:821px){
   .groups{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:6px;margin-bottom:12px;scrollbar-width:thin}
 #about .groups{margin:0 0 18px}
+/* Бўлимлар панели: шапка тагида, ҳар доим экран тепасида */
+header{position:sticky;top:0;z-index:40}
+header > .wrap.head{position:relative}
+header .groups{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:6px;margin:0;padding:6px 0 8px;background:rgba(244,245,238,.97);border-top:1px solid var(--line)}
+header .groups .group{flex:none;white-space:nowrap;padding:5px 10px;font-size:12px;gap:6px;border-radius:8px}
+header .groups .group i{font-size:15px}
+header .groups .group em{font-size:11px;padding:0 6px}
+header .groups .group span{flex:none}
+#catalog .groups,#about .groups{display:none!important}
+@media(max-width:820px){header .groups{display:none}}
   .group{flex:none;white-space:nowrap;padding:5px 10px;font-size:12px;gap:6px;border-radius:8px}
   .group span{flex:none}
   .group i{font-size:15px}
   .group em{font-size:11px;padding:0 6px}
   #catalog{padding-top:8px!important;padding-bottom:28px!important}
-  #catalog .groups{position:sticky;top:72px;z-index:30;background:var(--paper);padding:4px 0;margin:0 0 4px;box-shadow:0 6px 10px -10px rgba(19,39,52,.35)}
+  #catalog .groups{margin:0 0 4px;padding:4px 0}
   #catalog .note{margin:4px 0 10px}
   #catalog .cat-title{margin:12px 0 8px;scroll-margin-top:140px}
   #catalog .chips{margin-bottom:4px}
@@ -242,6 +252,7 @@ body[data-view="howto"] main > section#howto{padding-top:40px;min-height:70vh}
 <body>
 
 <header>
+  <div class="groups" id="groups"></div>
   <div class="wrap head">
     <a class="logo" href="#top"><img class="logo-img" src="images/logo.webp" alt="" width="40" height="40"><span id="brand"></span></a>
     <nav>
@@ -284,7 +295,6 @@ body[data-view="howto"] main > section#howto{padding-top:40px;min-height:70vh}
 
   <section id="catalog" style="padding-top:20px">
     <div class="wrap">
-      <div class="groups" id="groups"></div>
       <div class="chips" id="chips"></div>
       <div id="list"></div>
     </div>
@@ -486,6 +496,7 @@ function matches(p) {
 }
 
 function renderGroups() {
+  if (!$('#groups')) return;
   const count = g => PRODUCTS.filter(p => g.cats.includes(p.cat)).length;
   $('#groups').innerHTML =
     '<button type="button" class="group' + (group === 'all' ? ' on' : '') + '" data-g="all"><i>🏥</i><span>' + t('all') + '</span><em>' + PRODUCTS.length + '</em></button>' +
@@ -673,15 +684,9 @@ document.addEventListener('click', e => {
 });
 /* Бир бўлим режими: фақат танланган бўлим кўринади */
 /* Бўлимлар панели: каталогда ўз жойида, «Биз ҳақимизда»да унинг тепасида */
-const groupsHome = (() => { const g = document.querySelector('#groups'); return { el: g, parent: g.parentNode, next: g.nextSibling }; })();
-function placeGroups(inAbout) {
-  const g = groupsHome.el;
-  if (inAbout) document.querySelector('#about .wrap').prepend(g);
-  else if (g.parentNode !== groupsHome.parent) groupsHome.parent.insertBefore(g, groupsHome.next);
-}
+function placeGroups() { /* панель шапкада доимо турибди */ }
 function setView(name) {
   if (name) document.body.setAttribute('data-view', name); else document.body.removeAttribute('data-view');
-  placeGroups(name === 'about');
   window.scrollTo({ top: 0, behavior: 'auto' });
 }
 /* «Каталог» (шапка ва «Каталогни кўриш») — бўлимлар менюсини очади ва каталогни ажратади */
