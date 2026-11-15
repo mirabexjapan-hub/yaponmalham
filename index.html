@@ -222,6 +222,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 body[data-view] main > section:not(#catalog):not(#howto):not(#contact):not(#about){display:none!important}
 body[data-view="catalog"] main > section:not(#catalog){display:none!important}
 body[data-view="howto"] main > section:not(#howto){display:none!important}
+body[data-view="about"] main > section:not(#about){display:none!important}
 body[data-view="howto"] main > section#howto{padding-top:40px;min-height:70vh}
 .info-btn{border:1px solid var(--line);background:var(--card);color:var(--indigo);border-radius:999px;padding:8px 14px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;flex:none;white-space:nowrap}
 .info-btn:hover{border-color:var(--leaf)}
@@ -683,6 +684,11 @@ document.querySelectorAll('a[href="#howto"]').forEach(a => a.addEventListener('c
   e.preventDefault();
   setMenu(false);
   setView('howto');
+}));
+document.querySelectorAll('header a[href="#about"]').forEach(a => a.addEventListener('click', e => {
+  e.preventDefault();
+  setMenu(false);
+  setView('about');
 }));
 document.querySelectorAll('a.logo').forEach(a => a.addEventListener('click', e => {
   e.preventDefault();
