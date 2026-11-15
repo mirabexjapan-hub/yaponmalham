@@ -1,0 +1,16 @@
+{
+  "name": "YaponMalham",
+  "short_name": "YaponMalham",
+  "description": "Япониядан дори, витамин ва косметика каталоги",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F4F5EE",
+  "theme_color": "#1E3A4C",
+  "lang": "uz",
+  "icons": [
+    { "src": "images/logo.webp", "sizes": "192x192", "type": "image/webp", "purpose": "any" },
+    { "src": "images/logo.webp", "sizes": "512x512", "type": "image/webp", "purpose": "any" }
+  ]
+}
