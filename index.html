@@ -308,6 +308,7 @@ body[data-view="howto"] main > section#howto{padding-top:40px;min-height:70vh}
 
   <section id="catalog" style="padding-top:20px">
     <div class="wrap">
+      <input class="search search-cat" id="search2" type="search" autocomplete="off" aria-label="Search">
       <div class="chips" id="chips"></div>
       <div id="list"></div>
     </div>
@@ -488,6 +489,7 @@ function applyTexts() {
   $('#menuBtn').title = t('sections');
   $('#footBrand').textContent = '© ' + new Date().getFullYear() + ' ' + CONFIG.brand;
   $('#search').placeholder = t('search');
+  $('#search2').placeholder = t('search');
   $('#custName').placeholder = t('name');
   $('#custPhone').placeholder = t('phonePh');
   $('#sendTg').textContent = t('sendTg');
@@ -744,7 +746,8 @@ document.addEventListener('click', e => {
     if (it) { it.q += Number(el.dataset.q); if (it.q <= 0) cart = cart.filter(c => c !== it); save(); renderCart(); }
   }
 });
-$('#search').addEventListener('input', e => { query = e.target.value.trim().toLowerCase(); if (query) { group = 'all'; cat = 'all'; renderGroups(); } renderList(); });
+$('#search').addEventListener('input', e => { if ($('#search2').value !== e.target.value) $('#search2').value = e.target.value; query = e.target.value.trim().toLowerCase(); if (query) { group = 'all'; cat = 'all'; renderGroups(); } renderList(); });
+$('#search2').addEventListener('input', e => { $('#search').value = e.target.value; $('#search').dispatchEvent(new Event('input')); });
 $('#cartBtn').addEventListener('click', () => $('#cartOverlay').hidden = false);
 function openInfo() {
   const pick = s => document.querySelector(s).innerHTML;
