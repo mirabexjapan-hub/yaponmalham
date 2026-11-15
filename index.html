@@ -31,6 +31,7 @@ a{color:inherit}
 header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);box-shadow:0 1px 0 var(--line),0 6px 18px -14px rgba(19,39,52,.35)}
 .head{display:flex;align-items:center;gap:20px;height:64px}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--serif);font-weight:700;font-size:20px;color:var(--indigo);white-space:nowrap}
+.logo-img{width:40px;height:40px;object-fit:contain;flex:none;display:block}
 .logo-mark{width:34px;height:34px;border-radius:50%;background:var(--tomato);display:grid;place-items:center;flex:none}
 .logo-mark::after{content:"";width:14px;height:14px;background:#fff;clip-path:polygon(35% 0,65% 0,65% 35%,100% 35%,100% 65%,65% 65%,65% 100%,35% 100%,35% 65%,0 65%,0 35%,35% 35%)}
 nav{display:flex;gap:22px;margin-left:auto}
@@ -242,7 +243,7 @@ body[data-view="howto"] main > section#howto{padding-top:40px;min-height:70vh}
 
 <header>
   <div class="wrap head">
-    <a class="logo" href="#top"><span class="logo-mark"></span><span id="brand"></span></a>
+    <a class="logo" href="#top"><img class="logo-img" src="images/logo.webp" alt="" width="40" height="40"><span id="brand"></span></a>
     <nav>
       <a href="#catalog" data-t="navCatalog"></a>
       <a href="#about" data-t="navAbout"></a>
