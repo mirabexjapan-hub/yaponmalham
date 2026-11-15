@@ -91,12 +91,15 @@ header #groups .group span{flex:none}
 #catalog .groups,#about .groups{display:none!important}
 #about .groups{margin:0 0 18px}
 @media(max-width:820px){
+  header .head{flex-wrap:wrap;height:auto;row-gap:0;padding-top:4px;padding-bottom:4px}
+  header nav{display:flex!important;order:5;width:100%;margin:0;gap:14px;overflow-x:auto;padding:4px 0 6px;scrollbar-width:none}
+  header nav a{flex:none;font-size:13px;white-space:nowrap}
   header #groups{display:flex!important;padding:4px 0 6px;gap:5px}
   header #groups .group{padding:4px 8px;font-size:11px;gap:4px}
   header #groups .group i{font-size:13px}
   header #groups .group em{font-size:10px;padding:0 5px}
-  html{scroll-padding-top:118px}
-  .hero{scroll-margin-top:118px}
+  html{scroll-padding-top:150px}
+  .hero{scroll-margin-top:150px}
   .hero-row{flex-direction:column;align-items:stretch;gap:10px}
   .hero-row .search-top{flex:0 0 auto!important;width:100%!important;height:40px!important;margin-left:0}
 }
@@ -641,7 +644,7 @@ document.querySelectorAll('a[href="#catalog"]').forEach(a => a.addEventListener(
   const bar = () => document.querySelector('#groups');
   function step() {
     const el = bar();
-    if (!el || !wide.matches || paused) { raf = null; return; }
+    if (!el || paused) { raf = null; return; }
     if (el.scrollWidth <= el.clientWidth) { raf = null; return; }
     frame++;
     if (frame % 2 === 0) el.scrollLeft += 1;
