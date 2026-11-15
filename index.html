@@ -57,6 +57,8 @@ nav a:hover{color:var(--tomato)}
 .btn.ghost{background:transparent;border:1.5px solid rgba(255,255,255,.55);color:#fff}
 .btn.ghost:hover{background:rgba(255,255,255,.12)}
 .hero-btns{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.hero-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.hero-row h1{margin:6px 0;flex:1 1 auto;min-width:0}
 .search-icon{margin-left:auto;width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(255,255,255,.55);background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer;flex:none}
 .search-icon:hover{background:rgba(255,255,255,.12)}
 .hero-pics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;transform:rotate(-2deg);max-width:440px;justify-self:end;width:100%}
@@ -212,6 +214,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 .scroll-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--indigo);color:#fff;font-size:20px;line-height:1;cursor:pointer;box-shadow:var(--shadow-hover)}
 .scroll-btn:hover{background:var(--indigo-deep)}
 @media(prefers-reduced-motion:reduce){.scroll-btns{transition:none}}
+.hero-row .search-top{margin-left:0;flex:0 0 260px}
 .search-top{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:14px center;padding-left:38px!important;width:260px;height:38px;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding-right:16px;font:inherit;font-size:14px;background-color:rgba(255,255,255,.1);color:#fff;flex:none;min-width:0;margin-left:auto}
 .search-top::placeholder{color:rgba(255,255,255,.75)}
 .search-top:focus{outline:2px solid #fff;outline-offset:2px}
@@ -260,8 +263,8 @@ body[data-view="howto"] main > section#howto{padding-top:40px;min-height:70vh}
   <section class="hero" style="padding-block:0">
     <div class="wrap hero-in">
       <div>
-        <h1 data-t="heroTitle"></h1>
-        <div class="hero-btns">
+        <div class="hero-row">
+          <h1 data-t="heroTitle"></h1>
           <input class="search-top" id="search" type="search" autocomplete="off" aria-label="Search">
         </div>
         <div class="hero-facts">
