@@ -90,7 +90,16 @@ header #groups .group em{font-size:11px;padding:0 6px}
 header #groups .group span{flex:none}
 #catalog .groups,#about .groups{display:none!important}
 #about .groups{margin:0 0 18px}
-@media(max-width:820px){header #groups{display:none!important}}
+@media(max-width:820px){
+  header #groups{display:flex!important;padding:4px 0 6px;gap:5px}
+  header #groups .group{padding:4px 8px;font-size:11px;gap:4px}
+  header #groups .group i{font-size:13px}
+  header #groups .group em{font-size:10px;padding:0 5px}
+  html{scroll-padding-top:118px}
+  .hero{scroll-margin-top:118px}
+  .hero-row{flex-direction:column;align-items:stretch;gap:10px}
+  .hero-row .search-top{flex:0 0 auto!important;width:100%!important;height:40px!important;margin-left:0}
+}
 @media(min-width:821px){
   .groups{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:6px;margin-bottom:12px;scrollbar-width:thin}
   .group{flex:none;white-space:nowrap;padding:5px 10px;font-size:12px;gap:6px;border-radius:8px}
