@@ -673,10 +673,17 @@ document.addEventListener('click', e => {
 /* Бир бўлим режими: фақат танланган бўлим кўринади */
 /* Бўлимлар панели: каталогда ўз жойида, «Биз ҳақимизда»да унинг тепасида */
 const groupsHome = (() => { const g = document.querySelector('#groups'); return { el: g, parent: g.parentNode, next: g.nextSibling }; })();
+const noteHome = (() => { const n = document.querySelector('#catalog .note'); return { el: n, parent: n.parentNode, next: n.nextSibling }; })();
 function placeGroups(inAbout) {
-  const g = groupsHome.el;
-  if (inAbout) document.querySelector('#about .wrap').prepend(g);
-  else if (g.parentNode !== groupsHome.parent) groupsHome.parent.insertBefore(g, groupsHome.next);
+  const g = groupsHome.el, n = noteHome.el;
+  if (inAbout) {
+    const about = document.querySelector('#about .wrap');
+    about.prepend(g);
+    about.appendChild(n);
+  } else {
+    if (g.parentNode !== groupsHome.parent) groupsHome.parent.insertBefore(g, groupsHome.next);
+    if (n.parentNode !== noteHome.parent) noteHome.parent.insertBefore(n, noteHome.next);
+  }
 }
 function setView(name) {
   if (name) document.body.setAttribute('data-view', name); else document.body.removeAttribute('data-view');
