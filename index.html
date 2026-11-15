@@ -80,6 +80,7 @@ h2{font-family:var(--serif);font-weight:700;font-size:clamp(24px,3vw,32px);color
 .group{display:flex;align-items:center;gap:10px;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:var(--radius);padding:10px 12px;font-size:14px;font-weight:600;color:var(--ink-soft);line-height:1.25;transition:border-color .15s,box-shadow .15s}
 @media(min-width:821px){
   .groups{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:6px;margin-bottom:12px;scrollbar-width:thin}
+#about .groups{margin:0 0 18px}
   .group{flex:none;white-space:nowrap;padding:5px 10px;font-size:12px;gap:6px;border-radius:8px}
   .group span{flex:none}
   .group i{font-size:15px}
@@ -663,15 +664,23 @@ $('#menuPanel').addEventListener('click', e => {
   const b = e.target.closest('[data-mg]');
   if (!b) return;
   group = b.dataset.mg; cat = 'all';
-  setMenu(false); renderGroups(); renderList(); goToList();
+  setMenu(false); setView('catalog'); renderGroups(); renderList(); goToList();
 });
 document.addEventListener('click', e => {
   if (e.target.closest('a[href="#catalog"]')) return; // «Каталог» тугмаси менюни очади
   if (!$('#menuPanel').hidden && !e.target.closest('#menuPanel') && !e.target.closest('#menuBtn')) setMenu(false);
 });
 /* Бир бўлим режими: фақат танланган бўлим кўринади */
+/* Бўлимлар панели: каталогда ўз жойида, «Биз ҳақимизда»да унинг тепасида */
+const groupsHome = (() => { const g = document.querySelector('#groups'); return { el: g, parent: g.parentNode, next: g.nextSibling }; })();
+function placeGroups(inAbout) {
+  const g = groupsHome.el;
+  if (inAbout) document.querySelector('#about .wrap').prepend(g);
+  else if (g.parentNode !== groupsHome.parent) groupsHome.parent.insertBefore(g, groupsHome.next);
+}
 function setView(name) {
   if (name) document.body.setAttribute('data-view', name); else document.body.removeAttribute('data-view');
+  placeGroups(name === 'about');
   window.scrollTo({ top: 0, behavior: 'auto' });
 }
 /* «Каталог» (шапка ва «Каталогни кўриш») — бўлимлар менюсини очади ва каталогни ажратади */
@@ -705,7 +714,7 @@ document.addEventListener('click', e => {
   if (e.target.id === 'cartOverlay') { $('#cartOverlay').hidden = true; return; }
   if (!el) return;
   if (el.dataset.lang) { lang = el.dataset.lang; save(); renderAll(); if (!$('#modal').hidden) $('#modal').hidden = true; }
-  else if (el.dataset.g) { group = el.dataset.g; cat = 'all'; renderGroups(); renderList(); goToList(); }
+  else if (el.dataset.g) { if (document.body.getAttribute('data-view') === 'about') setView('catalog'); group = el.dataset.g; cat = 'all'; renderGroups(); renderList(); goToList(); }
   else if (el.dataset.c) { cat = el.dataset.c; renderGroups(); renderList(); goToList(); }
   else if (el.dataset.add) addToCart(el.dataset.add);
   else if (el.dataset.open) openModal(el.dataset.open);
