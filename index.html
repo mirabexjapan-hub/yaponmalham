@@ -550,13 +550,13 @@ function cardHtml(p) {
 function renderList() {
   const g = GROUPS.find(x => x.id === group);
   let html = '';
+  // Бир гуруҳ — бир қатор карточкалар: бўш жойлар бошқа бўлим товарлари билан тўлади
   (g ? [g] : GROUPS).forEach(gr => {
-    gr.cats.forEach(c => {
-      if (g && cat !== 'all' && cat !== c) return;
-      const items = PRODUCTS.filter(p => p.cat === c && matches(p));
-      if (!items.length) return;
-      html += '<h3 class="cat-title">' + gr.icon + ' ' + esc(CATS[c][lang]) + ' <small>' + items.length + ' ' + t('items') + '</small></h3><div class="grid">' + items.map(cardHtml).join('') + '</div>';
-    });
+    const cats = gr.cats.filter(c => !(g && cat !== 'all' && cat !== c));
+    const items = PRODUCTS.filter(p => cats.includes(p.cat) && matches(p)).sort((a, b) => cats.indexOf(a.cat) - cats.indexOf(b.cat));
+    if (!items.length) return;
+    const name = cat !== 'all' ? CATS[cat][lang] : (lang === 'uz' ? gr.uz : gr.ru);
+    html += '<h3 class="cat-title">' + gr.icon + ' ' + esc(name) + ' <small>' + items.length + ' ' + t('items') + '</small></h3><div class="grid">' + items.map(cardHtml).join('') + '</div>';
   });
   $('#list').innerHTML = html || '<p class="empty">' + t('empty') + '</p>';
 }
